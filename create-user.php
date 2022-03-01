@@ -23,8 +23,11 @@
   </head>
   <body>
     <div class="container">
+      <div class="py-2">
+        <a href="user-list.php" class="btn btn-info">使用者列表</a>
+      </div>
       <h2>新增使用者</h2>
-      
+
       <form action="doCreate.php" class="mt-3" method="post">
         <div class="mb-3">
           <label for="account">帳號：</label>

@@ -23,12 +23,19 @@ $phones_string=implode(',',$phones);
 //   exit;
 // }
 
-$sql = "INSERT INTO users (account, password, gender, phones)
-VALUES ('$account', '$password', '$gender', '$phones_string')";
+// 或是去修改 XAMPP 的 Apche 的 config 的 PHP.ini 的 data.timezone 時區
+date_default_timezone_set("Asia/Taipei");
+$now=date('Y-m-d H:i:s');
+
+$sql = "INSERT INTO users (account, password, gender, phones, create_time)
+VALUES ('$account', '$password', '$gender', '$phones_string', '$now')";
 // echo $sql;
 
 if ( $conn -> query($sql) === TRUE ) {
-  echo "新資料輸入成功";
+  $last_id = $conn->insert_id;
+  echo
+    "新資料輸入成功<br>",
+    "ID 為 $last_id";
 } else {
   echo "Error: " . $sql . "<br>" . $conn->error;
 }
