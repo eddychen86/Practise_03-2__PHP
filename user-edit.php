@@ -35,11 +35,43 @@ $row=$result->fetch_assoc();
         </tr>
         <tr>
           <td>帳號</td>
-          <td><?= $row["account"] ?></td>
+          <td><input type="text" name="account" class="form-control" value="<?= $row["account"] ?>"></td>
         </tr>
         <tr>
-          <td>密碼</td>
-          <td><?= $row["password"] ?></td>
+          <td>性別</td>
+          <td>
+            <select name="gender" id="gender" class="form-select">
+              <option value="">請選擇</option>
+              <option value="male"
+                <?php
+                  if ($row["gender"] === "male")
+                    echo "selected";
+                ?>
+              >Male</option>
+              <option value="female"
+                <?php
+                  if ($row["gender"] === "female")
+                    echo "selected";
+                ?>
+              >Female</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>電話</td>
+          <td>
+            <div class="row">
+              <div class="col">
+                <input type="text" name="phones[]" class="form-control" value="">
+              </div>
+              <div class="col">
+                <input type="text" name="phones[]" class="form-control" value="">
+              </div>
+              <div class="col">
+                <input type="text" name="phones[]" class="form-control" value="">
+              </div>
+            </div>
+          </td>
         </tr>
         <tr>
           <td>時間</td>
@@ -47,7 +79,7 @@ $row=$result->fetch_assoc();
         </tr>
       </table>
       <div class="py-2">
-        <a href="./user-edit.php?id=<?= $row["id"] ?>" class="btn btn-info">修改</a>
+        <a href="./user.php?id=<?= $row["id"] ?>" class="btn btn-info">取消</a>
     </div>
     </div>
     <!-- Bootstrap JavaScript Libraries -->

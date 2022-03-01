@@ -51,13 +51,13 @@
         <div class="row">
           <label for="phones">電話：</label>
           <div class="col">
-            <input id="phones" type="tel" name="phones[]" class="form-control" placeholder="123...">
+            <input id="phones" type="tel" name="phones[]" class="form-control" placeholder="公司">
           </div>
           <div class="col">
-            <input id="phones" type="tel" name="phones[]" class="form-control" placeholder="456...">
+            <input id="phones" type="tel" name="phones[]" class="form-control" placeholder="電話">
           </div>
           <div class="col">
-            <input id="phones" type="tel" name="phones[]" class="form-control" placeholder="789...">
+            <input id="phones" type="tel" name="phones[]" class="form-control" placeholder="手機">
           </div>
         </div>
         <button class="btn btn-info" type="submit">送出</button>
