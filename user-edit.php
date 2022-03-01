@@ -5,6 +5,8 @@ $sql = "SELECT * FROM users WHERE id=$id";
 $result = $conn -> query($sql);
 $row_count=$result->num_rows;
 $row=$result->fetch_assoc();
+
+$phoneArr = explode(",", $row["phones"]);
 ?>
 <!doctype html>
 <html lang="en">
@@ -62,13 +64,13 @@ $row=$result->fetch_assoc();
           <td>
             <div class="row">
               <div class="col">
-                <input type="text" name="phones[]" class="form-control" value="">
+                <input type="text" name="phones[]" class="form-control" value="<?= $phoneArr[0] ?>">
               </div>
               <div class="col">
-                <input type="text" name="phones[]" class="form-control" value="">
+                <input type="text" name="phones[]" class="form-control" value="<?= $phoneArr[1] ?>">
               </div>
               <div class="col">
-                <input type="text" name="phones[]" class="form-control" value="">
+                <input type="text" name="phones[]" class="form-control" value="<?= $phoneArr[2] ?>">
               </div>
             </div>
           </td>
