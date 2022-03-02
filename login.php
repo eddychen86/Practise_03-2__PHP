@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+if (isset($_SESSION["user"])) {
+  header("Location: dashboard.php");
+}
+?>
 <!doctype html>
 <html lang="zh-TW">
   <head>
@@ -20,20 +27,32 @@
   <body>
     <div class="vh-100 d-flex justify-content-center align-items-center">
       <div class="login-panel card p-3">
-        <h2 class="text-center">登入</h2>
-        <form action="doLogin.php" method="post">
-          <div class="form-floating mb-3">
-            <input name="account" type="text" class="form-control" id="floatingInput" placeholder="name">
-            <label for="floatingInput">Account</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Password</label>
-          </div>
-          <div class="d-grid">
-            <button class="btn btn-info" type="submit">Login</button>
-          </div>
-        </form>
+        <?php if(isset($_SESSION["error"]) && $_SESSION["error"]["times"]>=3): ?>
+          <h3 class='text-danger text-center'>!@#!@#!<br><b>母湯手賤亂按啦！</b></h3>
+        <?php else: ?>
+          <form action="doLogin.php" method="post">
+            <h2 class="text-center">登入</h2>
+            <div class="form-floating mb-3">
+              <input name="account" type="text" class="form-control" id="floatingInput" placeholder="name">
+              <label for="floatingInput">Account</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+              <label for="floatingPassword">Password</label>
+            </div>
+            <div class="mb-2 text-danger text-center">
+              <?php 
+              if(isset($_SESSION["error"])) {
+                echo $_SESSION["error"]["message"].", 共錯誤".$_SESSION["error"]["times"]."次";
+              } 
+              ?>
+            </div>
+            <div class="d-grid">
+              <button class="btn btn-info" type="submit">Login</button>
+              <!-- <button class="btn btn-info" type="submit">Sign up</button> -->
+            </div>
+          </form>
+        <?php endif; ?>
       </div>
     </div>
     <!-- Bootstrap JavaScript Libraries -->

@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once("db_connect.php");
 
 $account = $_POST["account"];
@@ -14,8 +15,22 @@ if ( $conn->query($sql) == TRUE ) {
   // echo $userCount;
   if ( $userCount > 0 ) {
     echo "登入成功";
+    $user = $result->fetch_assoc();
+    $data = [
+      "account" => $user["account"]
+    ];
+    $_SESSION["user"] = $data;
+    unset($_SESSION["error"]);
+    var_dump($_SESSION["user"]);
   } else {
     echo "登入失敗";
+    if (isset($_SESSION["error"]["times"])) {
+      $_SESSION["error"]["times"]++;
+    } else {
+      $_SESSION["error"]["times"] = 1;
+    }
+    $_SESSION["error"]["message"] = "帳號或密碼錯誤";
+    header( "location: login.php" );
   }
 } else {
   echo "Error" . $conn->error;
