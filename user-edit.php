@@ -1,12 +1,12 @@
 <?php
 require_once("db_connect.php");
 $id = $_GET["id"];
-$sql = "SELECT * FROM users WHERE id=$id";
+$sql = "SELECT * FROM users WHERE id=$id  AND states = 1";
 $result = $conn -> query($sql);
 $row_count=$result->num_rows;
 $row=$result->fetch_assoc();
 
-$phoneArr = explode(",", $row["phones"]);
+$phoneArr = explode(", ", $row["phones"]);
 ?>
 <!doctype html>
 <html lang="en">
@@ -31,6 +31,8 @@ $phoneArr = explode(",", $row["phones"]);
         <a href="user-list.php" class="btn btn-info">使用者列表</a>
       </div>
       <form action="doUpdate.php" method="post">
+        <!-- 這邊的 input 用意是為了要讓 doUpdate 偵測到是哪個 id，hidden 是將 input 隱藏起來 -->
+        <input type="hidden" name="id" value="<?= $row["id"] ?>">
         <table class="table table-bordered">
           <tr>
             <td>id</td>
@@ -84,7 +86,10 @@ $phoneArr = explode(",", $row["phones"]);
         <div class="py-2">
           <div class="d-flex justify-content-between">
             <button type="submit" class="btn btn-info" >更新</button>
-            <a href="./user.php?id=<?= $row["id"] ?>" class="btn btn-info">取消</a>
+            <div>
+              <a href="./doDelete.php?id=<?= $row["id"] ?>" class="btn btn-danger">刪除</a>
+              <a href="./user.php?id=<?= $row["id"] ?>" class="btn btn-info">取消</a>
+            </div>
           </div>
         </div>
       </form>

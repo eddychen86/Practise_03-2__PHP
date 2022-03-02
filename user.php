@@ -1,12 +1,12 @@
 <?php
 require_once("db_connect.php");
 $id = $_GET["id"];
-$sql = "SELECT * FROM users WHERE id=$id";
+$sql = "SELECT * FROM users WHERE id=$id AND states = 1";
 $result = $conn -> query($sql);
 $row_count=$result->num_rows;
 $row=$result->fetch_assoc();
 
-$phoneArr = explode(",", $row["phones"]);
+$phoneArr = explode(", ", $row["phones"]);
 ?>
 <!doctype html>
 <html lang="en">
@@ -47,9 +47,9 @@ $phoneArr = explode(",", $row["phones"]);
           <td>電話</td>
           <td>
             <div class="row">
-              <div class="col"><?= $phoneArr[0] ?></div>
-              <div class="col"><?= $phoneArr[1] ?></div>
-              <div class="col"><?= $phoneArr[2] ?></div>
+              <div class="col"><?php if (isset($phoneArr[0])) echo $phoneArr[0]; ?></div>
+              <div class="col"><?php if (isset($phoneArr[1])) echo $phoneArr[1]; ?></div>
+              <div class="col"><?php if (isset($phoneArr[2])) echo $phoneArr[2]; ?></div>
             </div>
           </td>
         </tr>
@@ -60,6 +60,7 @@ $phoneArr = explode(",", $row["phones"]);
       </table>
       <div class="py-2">
         <a href="./user-edit.php?id=<?= $row["id"] ?>" class="btn btn-info">修改</a>
+        <a href="./doDelete.php?id=<?= $row["id"] ?>" class="btn btn-danger">刪除</a>
     </div>
     </div>
     <!-- Bootstrap JavaScript Libraries -->

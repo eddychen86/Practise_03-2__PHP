@@ -1,7 +1,7 @@
 <?php
 require_once("db_connect.php");
 // SELECT(抓取) *(all) FROM users(資料庫) ORDER BY(排序) id(資料庫的id) DESC(降冪)
-$sql="SELECT * FROM users ORDER BY id DESC";
+$sql="SELECT * FROM users WHERE states = 1 ORDER BY id DESC";
 $result = $conn->query($sql);
 ?>
 <!doctype html>
@@ -45,7 +45,7 @@ $result = $conn->query($sql);
             <th>id</th>
             <th>帳號</th>
             <th>性別</th>
-            <th>電話</th>
+            <th colspan="3">電話</th>
           </tr>
         </thead>
         <tbody>
@@ -60,7 +60,10 @@ $result = $conn->query($sql);
             <td><?= $row["gender"] ?></td>
             <td><?= $row["phones"] ?></td>
             <!-- href 內的連結為 連接 user.php 的 id -->
-            <td><a href="./user.php?id=<?= $row["id"] ?>" class="btn btn-info">詳細資料</a></td>
+            <td>
+              <a href="./user.php?id=<?= $row["id"] ?>" class="btn btn-info">More</a>
+              <a href="./doDelete.php?id=<?= $row["id"] ?>" class="btn btn-danger">Delete</a>
+            </td>
           </tr>
           <?php endwhile; ?>
           <?php else: ?>

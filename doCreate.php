@@ -11,7 +11,7 @@ $password=md5($_POST["password"]);
 $phones=$_POST["phones"];
 $gender=$_POST["gender"];
 $phones=array_filter($phones);
-$phones_string=implode(',',$phones);
+$phones_string=implode(', ',$phones);
 // var_dump($phones);
 
 // if (empty($account)) {
@@ -27,8 +27,8 @@ $phones_string=implode(',',$phones);
 date_default_timezone_set("Asia/Taipei");
 $now=date('Y-m-d H:i:s');
 
-$sql = "INSERT INTO users (account, password, gender, phones, create_time)
-VALUES ('$account', '$password', '$gender', '$phones_string', '$now')";
+$sql = "INSERT INTO users (account, password, gender, phones, create_time, states)
+VALUES ('$account', '$password', '$gender', '$phones_string', '$now', 1)";
 // echo $sql;
 
 if ( $conn -> query($sql) === TRUE ) {
