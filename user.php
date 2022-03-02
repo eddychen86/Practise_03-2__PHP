@@ -5,6 +5,8 @@ $sql = "SELECT * FROM users WHERE id=$id";
 $result = $conn -> query($sql);
 $row_count=$result->num_rows;
 $row=$result->fetch_assoc();
+
+$phoneArr = explode(",", $row["phones"]);
 ?>
 <!doctype html>
 <html lang="en">
@@ -40,6 +42,16 @@ $row=$result->fetch_assoc();
         <tr>
           <td>密碼</td>
           <td><?= $row["password"] ?></td>
+        </tr>
+        <tr>
+          <td>電話</td>
+          <td>
+            <div class="row">
+              <div class="col"><?= $phoneArr[0] ?></div>
+              <div class="col"><?= $phoneArr[1] ?></div>
+              <div class="col"><?= $phoneArr[2] ?></div>
+            </div>
+          </td>
         </tr>
         <tr>
           <td>時間</td>
