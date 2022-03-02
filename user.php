@@ -54,6 +54,10 @@ $phoneArr = explode(", ", $row["phones"]);
           </td>
         </tr>
         <tr>
+          <td>intro</td>
+          <td><?= $row["intro"] ?></td>
+        </tr>
+        <tr>
           <td>時間</td>
           <td><?= $row["create_time"] ?></td>
         </tr>
