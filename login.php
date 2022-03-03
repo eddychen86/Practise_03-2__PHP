@@ -27,7 +27,7 @@ if (isset($_SESSION["user"])) {
   <body>
     <div class="vh-100 d-flex justify-content-center align-items-center">
       <div class="login-panel card p-3">
-        <?php if(isset($_SESSION["error"]) && $_SESSION["error"]["times"]>=3): ?>
+        <?php if(isset($_SESSION["error"]) && $_SESSION["error"]["times"] >= 5): ?>
           <h3 class='text-danger text-center'>!@#!@#!<br><b>母湯手賤亂按啦！</b></h3>
         <?php else: ?>
           <form action="doLogin.php" method="post">

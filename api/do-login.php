@@ -17,6 +17,7 @@ if ( $conn->query($sql) == TRUE ) {
     // echo "登入成功";
     $user = $result->fetch_assoc();
     $data = [
+      "status" => 1,
       "account" => $user["account"]
     ];
     $_SESSION["user"] = $data;
@@ -33,8 +34,11 @@ if ( $conn->query($sql) == TRUE ) {
     $_SESSION["error"]["message"] = "帳號或密碼錯誤";
     // header( "location: login.php" );
     $data = [
-      "error" => $_SESSION["error"]["message"],
-      "times" => $_SESSION["error"]["times"]
+      "status" => 0,
+      "error" => [
+        "message" => $_SESSION["error"]["message"],
+        "times" => $_SESSION["error"]["times"]
+      ]
     ];
     echo json_encode($data);
   }
